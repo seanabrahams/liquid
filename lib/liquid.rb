@@ -41,7 +41,7 @@ module Liquid
   AnyStartingTag              = /#{TagStart}|#{VariableStart}/o
   PartialTemplateParser       = /#{TagStart}.*?#{TagEnd}|#{VariableStart}.*?#{VariableIncompleteEnd}/om
   TemplateParser              = /(#{PartialTemplateParser}|#{AnyStartingTag})/om
-  VariableParser              = /\[[^\]]+\]|#{VariableSegment}+\??/o
+  VariableParser              = /\[['"][^'"]+['"]\]|\[[^\]]+\]|#{VariableSegment}+\??/o
 
   RAISE_EXCEPTION_LAMBDA = ->(_e) { raise }
 

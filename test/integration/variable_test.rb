@@ -51,6 +51,11 @@ class VariableTest < Minitest::Test
     assert_template_result('result', "{{ a[ [ 'b' ] ] }}", { 'b' => 'c', 'a' => { 'c' => 'result' } })
   end
 
+  def test_expression_with_square_brackets_in_key_name
+    assert_template_result('result', "{{ a['b[c]'] }}", { 'a' => { 'b[c]' => 'result' } })
+    assert_template_result('result', "{{ a[['b[c]']] }}", { 'b[c]' => 'c', 'a' => { 'c' => 'result' } })
+  end
+
   def test_ignore_unknown
     assert_template_result("", "{{ test }}")
   end
